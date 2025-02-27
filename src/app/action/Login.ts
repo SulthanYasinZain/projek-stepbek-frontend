@@ -30,16 +30,18 @@ export default async function login(formData: FormData) {
   const responseBody = await response.json();
   const { token, user } = responseBody;
 
-  (await cookies()).set("token", token, options);
-  (await cookies()).set("name", user.name, options);
-
   if (response.ok) {
+    (await cookies()).set("token", token, options);
+    (await cookies()).set("name", user.name, options);
     redirect("/dashboard");
   }
 
   if (!response.ok) {
-    console.error("API Error:", response.status, responseBody);
-    throw new Error(`Failed to send data: ${response.status}`);
+    if (
+      responseBody.message.includes("The provided credentials are incorrect.")
+    ) {
+      return { error: "Email already taken" };
+    }
   }
 
   return responseBody;

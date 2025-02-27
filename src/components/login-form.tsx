@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import login from "@/app/action/Login";
 import {
@@ -15,6 +18,16 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(formData: FormData) {
+    setError(null);
+    const result = await login(formData);
+
+    if (result?.error) {
+      setError(result.error);
+    }
+  }
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -79,6 +92,7 @@ export function LoginForm({
                     name="password"
                     required
                   />
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
                 </div>
                 <Button type="submit" className="w-full">
                   Login

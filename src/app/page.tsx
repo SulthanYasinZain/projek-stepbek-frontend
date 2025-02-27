@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
-import Navbar from "../components/Navbar";
-
+import Hero from "@/components/hero";
+import Banner from "@/components/banner";
 export default async function Home() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
@@ -14,7 +14,8 @@ export default async function Home() {
 
   return (
     <div>
-      <Navbar userData={userData} />
+      <Hero />
+      <Banner />
     </div>
   );
 }

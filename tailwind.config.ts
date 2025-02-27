@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 export default {
   darkMode: ["class"],
   content: [
@@ -10,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#f8fbf9",
-        foreground: "#0f1310",
+        background: "#f7fefa",
+        foreground: "#02150b",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -25,7 +24,7 @@ export default {
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#89e0ad",
+          DEFAULT: "#74d4f4",
           foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
@@ -33,7 +32,7 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "#62e799",
+          DEFAULT: "#589cf2",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {

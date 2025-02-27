@@ -15,7 +15,7 @@ export function RegisterForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  
+
   async function handleSubmit(formData: FormData) {
     setError(null);
     const result = await register(formData);
@@ -67,7 +67,7 @@ export function RegisterForm({
                 />
               </div>
               {error && <p className="text-red-500 text-sm">{error}</p>}
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full active:bg-slate-50">
                 Sign Up
               </Button>
             </div>
