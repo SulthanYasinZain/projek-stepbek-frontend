@@ -2,7 +2,6 @@
 
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { cookies } from "next/headers";
-import Navbar from "@/components/Navbar";
 
 export default async function community() {
   const cookieStore = await cookies();

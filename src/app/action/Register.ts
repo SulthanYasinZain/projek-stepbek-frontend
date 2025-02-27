@@ -1,5 +1,4 @@
 "use server";
-import { redirect } from "next/navigation";
 
 export default async function register(formData: FormData) {
   const name = formData.get("name") as string;
