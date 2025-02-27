@@ -42,6 +42,7 @@ export default async function register(formData: FormData) {
         error: `Registration failed: ${response.status} - ${responseBody.message}`,
       };
     }
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     console.error(error);
     return { error: "An unexpected error occurred. Please try again." };

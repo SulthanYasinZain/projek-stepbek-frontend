@@ -1,9 +1,6 @@
-"use server";
-
-import register from "../action/Register";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import {RegisterForm} from "@/components/register-form";
+import { RegisterForm } from "@/components/register-form";
 
 export default async function RegisterPage() {
   const cookieStore = await cookies();

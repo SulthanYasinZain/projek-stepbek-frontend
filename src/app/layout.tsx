@@ -3,7 +3,6 @@ import { cookies } from "next/headers";
 import Navbar from "../components/Navbar";
 import { Albert_Sans } from "next/font/google";
 import "./globals.css";
-import { a, p } from "framer-motion/client";
 
 const albertSans = Albert_Sans({
   variable: "--font-geist-sans",

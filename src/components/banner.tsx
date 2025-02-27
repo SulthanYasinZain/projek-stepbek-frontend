@@ -1,5 +1,3 @@
-import { MagicCard } from "./magicui/magic-card";
-
 export default function banner() {
   return (
     <div className="flex flex-col justify-center items-center h-screen mt-8">
