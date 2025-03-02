@@ -1,44 +1,47 @@
 import Seminar from "@/assets/Seminar.jpg";
 import Image from "next/image";
 import Training from "@/assets/training.jpg";
+import Link from "next/link";
 import { AnimatedGridPattern } from "./magicui/animated-grid-pattern";
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen pt-16">
-      <div className="text-center w-[500px] sm:w-[1000px] flex flex-wrap items-center justify-center gap-4">
-        <h1 className="text-3xl sm:text-6xl font-semibold">Find</h1>
+    <div className="flex flex-col justify-center items-center w-screen h-screen pt-16">
+      <div className="text-center w-screen sm:w-[1000px] flex flex-wrap items-center justify-center gap-4">
+        <h1 className="text-3xl text-foreground sm:text-6xl font-semibold">
+          Book
+        </h1>
         <Image
-          className="hidden sm:block rounded-full border-2 border-foreground w-[200px] h-[80px] object-cover"
+          className="hidden sm:block rounded-full border-2 border-foreground sm:w-[200px] h-[80px] object-cover"
           src={Seminar}
           alt="Seminar"
         />
-        <h1 className=" text-3xl sm:text-6xl font-semibold">
-          Onsite Seminars,
+        <h1 className="text-3xl sm:text-6xl font-semibold text-foreground ">
+          Onsite <span className="text-primary">Seminars</span>
         </h1>
-        <h1 className="text-3xl sm:text-6xl font-semibold">
-          Webinars, and Training
+        <h1 className="text-3xl sm:text-6xl font-semibold text-primary">
+          Webinars<span className="text-foreground"> and </span>Training
         </h1>
         <Image
-          className="hidden sm:block rounded-full border-2 border-foreground w-[150px] h-[80px] object-cover"
+          className="hidden sm:block rounded-full border-2 border-foreground sm:w-[150px] h-[80px] object-cover"
           src={Training}
           alt="Seminar"
         />
       </div>
-      <p className=" w-[400px] sm:w-[800px] text-center text-lg text-foreground mt-4">
+      <p className="text-sm w-[300px] px-2 sm:w-[800px] text-center sm:text-lg text-foreground mt-4">
         Upgrade your skills with immersive, in-person learning! Browse top-rated
         seminars and training courses designed to give you practical knowledge
         and hands-on experience
       </p>
-      <a
+      <Link
         href=""
-        className="bg-foreground text-background hover:bg-foreground/80 transition-all duration-100 py-2 px-4 rounded-lg mt-4"
+        className="bg-foreground text-background hover:bg-foreground/80 transition-all duration-100 py-3 px-6 rounded-lg mt-4"
       >
-        Reserve Your Spot
-      </a>
+        Explore Now
+      </Link>
       <AnimatedGridPattern
         className="absolute -z-10"
-        maxOpacity={0.1}
-        duration={2}
+        maxOpacity={0.15}
+        duration={1.5}
       />
     </div>
   );
