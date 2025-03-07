@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Clock, Users, MessageSquare, Award, ChevronRight } from "lucide-react";
 
-export default async function Course() {
+export default async function CourseDetail() {
   return (
     <section className="min-h-screen flex flex-col pt-12">
       <div className="flex-1">
