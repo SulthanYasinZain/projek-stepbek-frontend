@@ -44,23 +44,23 @@ export default function Course() {
   ];
   return (
     <section className="flex justify-center">
-      <div className="flex gap-12">
-        <div className=" rounded-lg">
-          <IconCloud images={images}></IconCloud>
+      <div className="flex flex-col sm:flex-row gap-12 items-center sm:items-start">
+        <div className="rounded-lg">
+          <IconCloud images={images} />
         </div>
-        <div className="flex flex-col gap-6 justify-center">
-          <h2 className="text-foreground text-3xl font-medium">
+        <div className="flex flex-col gap-6 items-start">
+          <h1 className="text-foreground text-xl sm:text-3xl font-medium">
             Top Courses from Leading Organizations
-          </h2>
-          <p className="text-foreground w-[500px]">
+          </h1>
+          <p className="text-foreground w-[300px] sm:w-[500px]">
             Discover the best courses from locally recognized institutions and
             industry leaders, carefully curated to help you stay ahead in your
             field.
           </p>
-          <p className="text-foreground w-[500px]">
+          <p className="text-foreground w-[300px] sm:w-[500px]">
             Gain in-demand skills through expert-led training, earn valuable
             certifications, and unlock new career opportunities. Whether
-            you&aposre looking to upskill, switch careers, or enhance your
+            you&apos;re looking to upskill, switch careers, or enhance your
             expertise.
           </p>
           <Link

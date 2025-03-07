@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatedGridPattern } from "./magicui/animated-grid-pattern";
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen pt-16">
+    <section className="flex flex-col justify-center items-center w-screen h-screen pt-16">
       <div className="text-center w-screen sm:w-[1000px] flex flex-wrap items-center justify-center gap-4">
         <h1 className="text-3xl text-foreground sm:text-6xl font-semibold">
           Book
@@ -43,6 +43,6 @@ export default function Hero() {
         maxOpacity={0.15}
         duration={1.5}
       />
-    </div>
+    </section>
   );
 }

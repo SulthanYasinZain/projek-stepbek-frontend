@@ -3,7 +3,7 @@ import CountUp from "./ui/countup";
 export default function banner() {
   return (
     <div className="bg-foreground flex flex-col justify-center items-center h-[300px] text-center">
-      <h3 className="text-background text-4xl font-medium w-[1000px]">
+      <h3 className="text-background text-xl sm:text-4xl font-medium w-[300px] sm:w-[1000px]">
         Millions of Participants & Academic Institutions Advancing Skills
         Together
       </h3>
@@ -15,7 +15,7 @@ export default function banner() {
             separator={","}
             duration={0.1}
           />
-          <p className="text-lg text-background">
+          <p className="text-sm  sm:text-lg text-background">
             Registered Training Participants
           </p>
         </div>
@@ -25,7 +25,9 @@ export default function banner() {
             className="text-background text-4xl font-medium"
             duration={0.1}
           />
-          <p className="text-lg text-background">Academic Institutions</p>
+          <p className=" text-sm sm:text-lg text-background">
+            Academic Institutions
+          </p>
         </div>
       </div>
     </div>

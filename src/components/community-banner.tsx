@@ -21,15 +21,15 @@ const communityFeatures = [
 
 export default function Community() {
   return (
-    <section className="bg-primary h-[400px] mt-12">
-      <div className="flex justify-center items-center h-full p-4 mx-10">
-        <div className="flex flex-col gap-6 w-1/2">
-          <h1 className="text-4xl text-foreground font-medium">
+    <section className="bg-primary h-auto py-12 mt-12">
+      <div className="flex flex-col sm:flex-row justify-center items-center h-full p-4 mx-4 sm:mx-10 gap-8">
+        <div className="flex flex-col justify-center sm:justify-normal gap-6 w-full sm:w-1/2 text-center sm:text-left">
+          <h1 className="text-xl sm:text-4xl text-foreground font-medium">
             Connect and Share Knowledge with 20,000+ Professionals and Industry
             Experts in Our Community
           </h1>
           <Link
-            className="bg-background text-foreground py-4 w-fit px-6 rounded-lg hover:bg-background/90"
+            className="bg-background text-foreground py-4 w-fit px-6 rounded-lg hover:bg-background/90 mx-auto sm:mx-0"
             href=""
           >
             <span className="flex gap-2 items-center">
@@ -37,7 +37,7 @@ export default function Community() {
             </span>
           </Link>
         </div>
-        <ul className="w-1/2 space-y-4">
+        <ul className="w-full sm:w-1/2 space-y-4">
           {communityFeatures.map((feature) => (
             <li key={feature.id} className="flex items-start gap-4">
               <BadgeCheck className="w-6 h-6 mt-1" />
