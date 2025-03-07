@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import TrainingCard from "@/components/training-card";
 import { Input } from "@/components/ui/input";
 
-export default function Home() {
+export default function Course() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Temukan Pelatihan</h1>
