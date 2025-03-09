@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 
 interface TrainingCardProps {
+  id: string;
   category: string;
   title: string;
   image: string;
@@ -17,6 +18,7 @@ interface TrainingCardProps {
 }
 
 export default function TrainingCard({
+  id,
   category,
   title,
   image,
@@ -44,13 +46,22 @@ export default function TrainingCard({
         </div>
         <div className="mt-3">
           <div className="text-sm text-gray-600">Harga</div>
-          <div className="font-bold text-lg">{price}</div>
+          <div className="font-bold text-lg">
+            {isNaN(Number(price))
+              ? price
+              : Number(price) === 0
+              ? "Gratis"
+              : price}
+          </div>
         </div>
       </CardContent>
       <CardFooter className="p-4">
-        <Button className="w-full bg-primary hover:bg-primary/90">
+        <Link
+          href={"/course/" + id}
+          className="w-full bg-primary hover:bg-primary/90"
+        >
           Ikut Pelatihan
-        </Button>
+        </Link>
       </CardFooter>
     </Card>
   );

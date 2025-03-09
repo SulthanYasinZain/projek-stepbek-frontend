@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useActionState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import register from "@/app/action/Register";
@@ -13,20 +12,7 @@ export function RegisterForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-
-  async function handleSubmit(formData: FormData) {
-    setError(null);
-    const result = await register(formData);
-
-    if (result?.error) {
-      setError(result.error);
-    } else if (result?.success) {
-      router.push("/login"); // Redirect to login on success
-    }
-  }
-
+  const [state, registerAction, isLoading] = useActionState(register, null);
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -34,7 +20,7 @@ export function RegisterForm({
           <CardTitle className="text-xl">Create An Account</CardTitle>
         </CardHeader>
         <CardContent>
-          <form action={handleSubmit} autoComplete="off">
+          <form action={registerAction} autoComplete="off">
             <div className="grid gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
@@ -66,9 +52,13 @@ export function RegisterForm({
                   required
                 />
               </div>
-              {error && <p className="text-red-500 text-sm">{error}</p>}
-              <Button type="submit" className="w-full active:bg-slate-50">
-                Sign Up
+              {state && <p className="text-red-500 text-sm">{state.error}</p>}
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full active:bg-slate-50 text-foreground"
+              >
+                {isLoading ? "Loading" : "Sign Up"}
               </Button>
             </div>
           </form>

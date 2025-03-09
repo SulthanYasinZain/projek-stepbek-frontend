@@ -1,8 +1,13 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 "use server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function login(formData: FormData) {
+export default async function login(prevState: any, formData: FormData | null) {
+  if (!formData) {
+    return { error: "Email and Password are required" };
+  }
+
   const data = {
     email: formData.get("email"),
     password: formData.get("password"),
@@ -27,22 +32,16 @@ export default async function login(formData: FormData) {
     }
   );
 
+  if (!response.ok) {
+    return { error: "Username or Password is incorrect" };
+  }
+
   const responseBody = await response.json();
   const { token, user } = responseBody;
 
-  if (response.ok) {
-    (await cookies()).set("token", token, options);
-    (await cookies()).set("name", user.name, options);
-    redirect("/dashboard");
-  }
+  const cookieStore = await cookies();
+  cookieStore.set("token", token, options);
+  cookieStore.set("name", user.name, options);
 
-  if (!response.ok) {
-    if (
-      responseBody.message.includes("The provided credentials are incorrect.")
-    ) {
-      return { error: "Email already taken" };
-    }
-  }
-
-  return responseBody;
+  redirect("/dashboard");
 }

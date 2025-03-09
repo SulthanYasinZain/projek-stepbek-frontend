@@ -1,10 +1,27 @@
 import { Search } from "lucide-react";
 import TrainingCard from "@/components/training-card";
 import { Input } from "@/components/ui/input";
+import { cookies } from "next/headers";
 
-export default function Course() {
+export default async function Course() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const courseList = await fetch(
+    "https://project-stepbek-backend-production.up.railway.app/api/events",
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  const CourseData = await courseList.json();
+  const courseArray = Array.isArray(CourseData.data) ? CourseData.data : [];
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <section className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Temukan Pelatihan</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -139,35 +156,28 @@ export default function Course() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            <TrainingCard
-              category="Pariwisata"
-              title="Menyiapkan Produk Roti"
-              image=""
-              status="Offline"
-              additionalInfo="+ 1 Lainnya"
-              price="Gratis"
-            />
-
-            <TrainingCard
-              category="Garmen Apparel"
-              title="ASISTEN PEMBUAT PAKAIAN"
-              image=""
-              status="Offline"
-              additionalInfo="+ 1 Lainnya"
-              price="Gratis"
-            />
-
-            <TrainingCard
-              category="Teknologi Informasi Dan Komunikasi"
-              title="Multimedia"
-              image=""
-              status="Offline"
-              additionalInfo="+ 1 Lainnya"
-              price="Gratis"
-            />
+            {courseArray.length > 0 ? (
+              /* eslint-disable  @typescript-eslint/no-explicit-any */
+              courseArray.map((course: any) => (
+                <TrainingCard
+                  key={course.id}
+                  id={course.id}
+                  category={course.kategori}
+                  title={course.nama_event}
+                  image={course.gambar}
+                  status={course.tema}
+                  additionalInfo="+ 1 Lainnya"
+                  price={course.harga_tiket}
+                />
+              ))
+            ) : (
+              <p className="text-gray-500">
+                Tidak ada data pelatihan tersedia.
+              </p>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

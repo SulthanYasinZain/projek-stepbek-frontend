@@ -13,7 +13,7 @@ export default function Collaboration() {
       <h1 className="text-center text-xl sm:text-4xl font-medium text-foreground w-[300px]  sm:w-[1000px]">
         Many Skillo Users Have Secured Careers at Top and Reputable Companies
       </h1>
-      <Marquee className="-z-10 w-full ">
+      <Marquee className="w-full ">
         <Image src={Google} width={175} height={74} alt="Google" />
         <Image src={Microsoft} width={175} height={74} alt="Microsoft" />
         <Image src={IBM} width={175} height={74} alt="IBM" />

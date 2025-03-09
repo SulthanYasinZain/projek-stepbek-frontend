@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "project-stepbek-backend-production.up.railway.app",
+        port: "",
+        pathname: "/storage/**",
+      },
     ],
     dangerouslyAllowSVG: true,
   },

@@ -1,13 +1,17 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 "use server";
 
-export default async function register(formData: FormData) {
+import { redirect } from "next/navigation";
+
+export default async function register(prevState: any, formData: FormData) {
+  if (!formData) {
+    {
+      return { error: "Invalid form submission" };
+    }
+  }
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
-
-  if (!name || !email || !password) {
-    return { error: "All fields are required." };
-  }
 
   try {
     const response = await fetch(
@@ -24,27 +28,19 @@ export default async function register(formData: FormData) {
 
     const responseBody = await response.json();
 
-    if (response.ok) {
-      return { success: true };
-    } else {
+    if (!response.ok) {
       if (responseBody.message.includes("The email has already been taken")) {
         return { error: "Email already taken" };
-      }
-      if (
-        responseBody.message.includes("The password field format is invalid.")
-      ) {
+      } else {
         return {
-          error:
-            "Password Must Be 8 Characters include Uppercase,Lowercase, number and special characters",
+          error: `Password Must Be 8 Characters include Uppercase,Lowercase, number and special characters",`,
         };
       }
-      return {
-        error: `Registration failed: ${response.status} - ${responseBody.message}`,
-      };
     }
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     console.error(error);
     return { error: "An unexpected error occurred. Please try again." };
   }
+
+  redirect("/login");
 }

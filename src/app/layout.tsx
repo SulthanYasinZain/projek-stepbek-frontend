@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import Navbar from "../components/Navbar";
-import { Inter } from "next/font/google";
+import { Albert_Sans } from "next/font/google";
 import "./globals.css";
-
-const albertSans = Inter({
-  variable: "--font-albert-sans",
+const albertSans = Albert_Sans({
   subsets: ["latin"],
 });
 
@@ -30,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${albertSans.variable} font-sans antialiased`}>
+      <body className={albertSans.className}>
         <Navbar userData={userData} />
         {children}
       </body>

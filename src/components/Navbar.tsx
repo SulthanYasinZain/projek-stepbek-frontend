@@ -2,67 +2,47 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/assets/Skillo.svg";
 import { logout } from "@/app/action/Logout";
-import userData from "@/interface/userData";
-import { ScrollProgress } from "./magicui/scroll-progress";
-import { CircleUserRound, ChevronDown } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import userData from "@/interface/userData";
+import { ScrollProgress } from "./magicui/scroll-progress";
+import { CircleUserRound } from "lucide-react";
+
 export default function Navbar({ userData }: { userData: userData }) {
   const { token, name } = userData;
 
   return (
-    <nav className="fixed z-100 w-screen border border-b-1 bg-background border-neutral-200 flex items-center justify-between py-2 px-4 sm:px-12">
+    <nav className="fixed w-screen border border-b-1 bg-background border-neutral-200 flex items-center justify-between py-2 px-4 sm:px-12">
       <span className="flex items-center gap-4">
         <Link href="/">
           {" "}
           <Image src={Logo} alt="Logo" width={80} height={80} />
         </Link>
-        <Popover>
-          <PopoverTrigger asChild>
-            <button className="sm:hidden flex items-center gap-2">
-              Home <ChevronDown />
-            </button>
-          </PopoverTrigger>
-          <PopoverContent className="w-auto">
-            <ul className="grid gap-2">
-              {["Home", "course", "community", "About"].map((item) => (
-                <li key={item}>
-                  <Link href={`/${item}`}>{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </PopoverContent>
-        </Popover>
       </span>
 
-      <ul className="hidden sm:flex items-center space-x-4">
-        {["Home", "Course", "community", "About"].map((item) => (
-          <li className="text-lg " key={item}>
-            <Link href={`/${item}`}>{item}</Link>
-          </li>
-        ))}
-      </ul>
-
       <span className="flex items-center gap-4">
-        {token && (
+        {token ? (
           <span className="flex items-center gap-2">
             <CircleUserRound />
-            <p className="text-lg">{name}</p>
+            <Popover>
+              <PopoverTrigger className="text-lg">{name}</PopoverTrigger>
+              <PopoverContent className="space-y-2 w-fit">
+                <Link href="/history" className="text-neutral-500">
+                  History
+                </Link>
+                <hr />
+                <form action={logout}>
+                  <button type="submit" className="text-red-500">
+                    Logout
+                  </button>
+                </form>
+              </PopoverContent>
+            </Popover>
           </span>
-        )}
-        {token ? (
-          <form action={logout}>
-            <button
-              className="bg-black text-white py-2 px-4 rounded-xl"
-              type="submit"
-            >
-              Logout
-            </button>
-          </form>
         ) : (
           <Link
             href="/login"

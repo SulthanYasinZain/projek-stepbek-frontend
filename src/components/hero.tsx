@@ -38,11 +38,7 @@ export default function Hero() {
       >
         Explore Now
       </Link>
-      <AnimatedGridPattern
-        className="absolute -z-10"
-        maxOpacity={0.15}
-        duration={1.5}
-      />
+      <AnimatedGridPattern className="-z-10" maxOpacity={0.15} duration={1.5} />
     </section>
   );
 }
