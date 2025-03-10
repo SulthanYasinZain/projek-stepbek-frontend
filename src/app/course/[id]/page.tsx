@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import Breadcrumbs from "@/components/course-detail-page/breadcrumps";
 import CourseImage from "@/components/course-detail-page/course-image";
 import CourseInfo from "@/components/course-detail-page/course-info";
