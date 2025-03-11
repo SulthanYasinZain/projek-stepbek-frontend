@@ -1,11 +1,12 @@
 /* eslint-disable  @typescript-eslint/no-unused-vars */
 "use client";
 import addEvent from "@/app/action/addEvent";
+import { useState } from "react";
 import { useActionState } from "react"; // Using the new React 19 hook [^1]
 
 export default function EventForm() {
   const [state, addEventAction, isLoading] = useActionState(addEvent, null);
-
+  const [imageName, setImageName] = useState("");
   return (
     <div className="max-w-3xl mx-auto pt-16 px-4 sm:px-6">
       <h1 className="text-2xl font-bold text-gray-900 mb-2">
@@ -17,7 +18,6 @@ export default function EventForm() {
         className="space-y-6 bg-white p-6 rounded-lg shadow-md"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Left column */}
           <div className="space-y-4">
             <div>
               <label
@@ -88,9 +88,11 @@ export default function EventForm() {
                 <option value="keterampilan & kejuruan">
                   Keterampilan & Kejuruan
                 </option>
-                <option value="teknologi">Teknologi & Digital</option>
-                <option value="bisnis">Bisnis & Kewirausahaan</option>
-                <option value="pengembangan">
+                <option value="teknologi & digital">Teknologi & Digital</option>
+                <option value="bisnis & kewirausahaan">
+                  Bisnis & Kewirausahaan
+                </option>
+                <option value="pengembangan diri & soft skills">
                   Pengembangan Diri & Soft Skills
                 </option>
               </select>
@@ -313,22 +315,32 @@ export default function EventForm() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <div className="flex text-sm text-gray-600">
+              <div className="flex text-sm justify-center text-gray-600">
                 <label
                   htmlFor="gambar"
                   className="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary-dark focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary"
                 >
-                  <span>Upload a file</span>
+                  <span className="text-center">
+                    {imageName
+                      ? "Selected Image"
+                      : "Upload a file or drag and drop"}
+                  </span>
                   <input
                     id="gambar"
                     name="gambar"
                     type="file"
                     className="sr-only"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        setImageName(e.target.files[0].name);
+                      }
+                    }}
                   />
                 </label>
-                <p className="pl-1">or drag and drop</p>
               </div>
-              <p className="text-xs text-gray-500">PNG, JPG up to 3MB</p>
+              <p className="text-xs text-gray-500">
+                {imageName ? imageName : "PNG, JPG up to 3MB"}
+              </p>
             </div>
           </div>
         </div>

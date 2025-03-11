@@ -104,7 +104,6 @@ export default async function addEvent(
 
     const responseText = await response.text();
     console.log("Raw API response:", responseText);
-
     let responseBody: any;
     try {
       responseBody = JSON.parse(responseText);
